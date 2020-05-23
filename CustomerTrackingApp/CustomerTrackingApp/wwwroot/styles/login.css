@@ -1,0 +1,20 @@
+﻿.user-login-form
+{
+    margin-left:40px;
+}
+.user-login-input {
+    margin-bottom: 20px;
+}
+.form-title
+{
+    margin-bottom:10px;
+}
+.login-inputs
+{
+    border:1px solid black;
+    border-radius:5px 5px 5px 5px;
+
+    padding:5px 8px 5px 8px;
+
+    outline:none;
+}

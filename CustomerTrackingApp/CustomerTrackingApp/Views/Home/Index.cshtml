@@ -1,8 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿@model BaseViewModel
+<script type="text/javascript" src="~/scripts/User.Login.js"></script>
+<link rel="stylesheet" href="~/styles/login.css" />
+<link rel="stylesheet" href="~/styles/btns.css" />
+<div class="user-login-form" id="user-login-form">
+    <h1>Login</h1>
+    <div style="margin-bottom:60px;">
+        <div class="form-title">Username:</div>
+        <div class="user-login-input"><input class="login-inputs" type="text" id="user-login-username" /></div>
+        <div class="form-title">Password:</div>
+        <div class="user-login-input"><input class="login-inputs" type="text" id="user-login-password" /></div>
+        <div style="margin-top:20px;"><button class="btns" id="user-login-btn">Login!</button></div>
+    </div>
 </div>
+<div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
