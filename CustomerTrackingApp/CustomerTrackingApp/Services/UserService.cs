@@ -55,6 +55,10 @@ namespace CustomerTrackingApp.Services
         {
             return this._userRepository.GetById(id);
         }
+        public List<UserModel> GetManagerById()
+        {
+            return this._userRepository.GetManagerById().ToList();
+        }
 
         public void Logout(HttpContext httpContext)
         {

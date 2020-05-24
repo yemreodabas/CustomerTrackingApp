@@ -1,4 +1,5 @@
 ﻿using CustomerTrackingApp.Entities;
+using CustomerTrackingApp.Enums;
 using CustomerTrackingApp.Models;
 using CustomerTrackingApp.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -29,12 +30,34 @@ namespace CustomerTrackingApp.Controllers
 				var users = this._userService.GetAllUsers();
 				List<UserModel> userList = new List<UserModel>();
 
-				for(int i =0; i < 5;i++)
+				for(int i =0; i < users.Count; i++)
 				{
+					if(i == 5)
+					{
+						break;
+					}
 					userList.Add(users[i]);
 				}
 
 				var response = ApiResponse<List<UserModel>>.WithSuccess(userList);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse<List<UserModel>>.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetManagers))]
+		public ActionResult<ApiResponse<List<UserModel>>> GetManagers()
+		{
+			try
+			{
+				var managers = this._userService.GetManagerById();
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(managers);
 
 				return Json(response);
 			}
@@ -52,9 +75,25 @@ namespace CustomerTrackingApp.Controllers
 			{
 				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
 
-				if (onlineUser != null)
+				if (onlineUser == null)
 				{
 					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
+				if(model.Type == UserType.Admin)
+				{
+					if(onlineUser.Type != UserType.Admin)
+					{
+						return Json(ApiResponse.WithError("Not Authority"));
+					}
+				}
+
+				if (model.Type == UserType.Manager)
+				{
+					if (onlineUser.Type != UserType.Admin)
+					{
+						return Json(ApiResponse.WithError("Not Authority"));
+					}
 				}
 
 				UserModel result = null;
