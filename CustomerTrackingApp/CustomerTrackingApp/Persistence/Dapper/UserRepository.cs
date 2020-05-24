@@ -35,6 +35,14 @@ namespace CustomerTrackingApp.Persistence.Dapper
 			}
 		}
 
+		public IEnumerable<UserModel> GetManagerById()
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<UserModel>("SELECT * FROM User WHERE  ManagerId != 0");
+			}
+		}
+
 		public int GetUserIdByLogin(string username, string password)
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())

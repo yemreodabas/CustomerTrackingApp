@@ -1,8 +1,78 @@
 ﻿function main() {
-	/*let userCreateBtn = document.getElementById("create-user-btn");
-	userCreateBtn.onclick = tryInsertUser;*/
-
 	tryGetUsers();
+
+	var modal = document.getElementById("myModal");
+	var addUserBtn = document.getElementById("add-user-btn");
+	var typeBtn = document.getElementById("type-btn");
+	var btn = document.getElementById("create-user-btn");
+	var span = document.getElementsByClassName("close")[0];
+
+	typeBtn.onclick = tryGetManagers;
+	addUserBtn.onclick = tryInsertUser;
+
+	btn.onclick = function () {
+		modal.style.display = "block";
+	}
+
+	span.onclick = function () {
+		modal.style.display = "none";
+	}
+
+	window.onclick = function (event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+}
+function tryGetManagers() {
+	var userType = document.getElementById("user-type").value;
+	if (userType == 2) {
+		httpRequest("api/User/GetManagers", "GET", null, handleGetManagers, showError.bind(null, "System Error"));
+	}
+	/*
+	var addBtnDiv = document.createElement("div");
+	var addBtn = document.createElement("button");
+
+	document.getElementById("modal-content").appendChild(addBtnDiv);
+	addBtnDiv.className = "create-user-div";
+	addBtnDiv.id = "add-btn-div";
+
+	document.getElementById("add-btn-div").appendChild(addBtn);
+	addBtn.className = "btns";
+	addBtn.id = "add-user-btn";
+	addBtn.innerHTML = "Add User";
+	addBtn.onclick = tryInsertUser;*/
+}
+
+function handleGetManagers(response) {
+	if (!response.Success) {
+		showError(response.ErrorMessage);
+		return;
+	}
+
+	page.managers = response.Data;
+
+	var managerTitleDiv = document.createElement("div");
+	var managerSelect = document.createElement("select");
+	var managerOption = document.createElement("option");
+
+	document.getElementById("modal-content").appendChild(managerTitleDiv);
+	managerTitleDiv.innerHTML = "Select Manager";
+	managerTitleDiv.className = "create-user-title";
+
+	document.getElementById("modal-content").appendChild(managerSelect);
+	managerSelect.className = "manager-list";
+	managerSelect.id = "manager-list";
+
+	var managerList = document.getElementById("manager-list");
+
+	for (let i = 0; i < page.managers.length; i++) {
+		let manager = page.managers[i];
+		managerList.appendChild(managerOption);
+		managerSelect.id = "manager-list";
+		managerSelect.value = manager.Id;
+		managerSelect.innerHTML = manager.Username;
+    }
 }
 
 function tryGetUsers() {
@@ -28,12 +98,32 @@ function tryInsertUser() {
 	let email = document.getElementById("user-create-email").value;
 	let password = document.getElementById("user-create-password").value;
 	let birthYear = parseInt(document.getElementById("user-create-birthyear").value);
+	let fullname = document.getElementById("user-create-fullname").value;
+	let phone = parseInt(document.getElementById("user-create-phone").value);
+	var userType = document.getElementById("user-type");
+	var user = parseInt(userType.options[userType.selectedIndex].value);
+	var gender = document.getElementById("gender");
+	var selectedGender = parseInt(gender.options[gender.selectedIndex].value);
+	var manager = document.getElementById("manager-list");
+	var selectedManager;
+	if (manager != undefined) {
+		selectedManager = parseInt(manager.options[manager.selectedIndex].value);
+    }
+	else if (selectedManager == undefined) {
+		selectedManager = 0;
+    }
 
 	let data = {
 		Username: username,
 		Email: email,
 		Password: password,
 		Birthyear: birthYear,
+		Fullname: fullname,
+		Phone: phone,
+		Type: user,
+		Gender: selectedGender,
+		ManagerId: selectedManager,
+		IsActive: 1,
 	};
 
 	httpRequest("api/User/CreateUser", "POST", data, handleInsertUser, showError.bind(null, "System Error"));
@@ -51,7 +141,7 @@ function handleInsertUser(response) {
 
 function appendUser(user) {
 	let userTemplate = '<div class="user-list-div clearfix" id="user-id-##user.Id##">';
-	userTemplate += '<span style="width:250px;" class="user-list-item">##user.Fullname##</span>';
+	userTemplate += '<span style="width:200px;" class="user-list-item">##user.Fullname##</span>';
 	userTemplate += '<span class="user-list-item">##user.Username##</span>';
 	userTemplate += '<span class="user-list-item">##user.Email##</span>';
 	userTemplate += '<span class="user-list-item">##user.Phone##</span>';

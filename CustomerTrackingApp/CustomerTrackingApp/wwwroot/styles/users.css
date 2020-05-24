@@ -1,7 +1,6 @@
 ﻿.user-list {
     position:relative;
-    background:#d8cece;
-    width: 1280px;
+    width: 75%;
     margin-top:40px;
     margin-left: auto;
     margin-right: auto;
@@ -10,6 +9,7 @@
     background:#ebe7e7;
 }
 .user-list-header-div {
+    background: #ddd5d5;
     padding: 15px 20px 15px 20px;
     border-bottom: 1px solid #858484;
     color: #4f3a3a;
@@ -25,7 +25,10 @@
 .user-list-item {
     display: block;
     float: left;
-    width: 123px;
+
+    width:135px;
+    margin-right:8px;
+    overflow:hidden;
 }
 .create-user-btn
 {
@@ -35,4 +38,40 @@
 
     top:-50px;
     right:-30px;
+}
+.modal {
+    display: none;
+}
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.create-user-title
+{
+    margin-bottom:10px;
+}
+.create-user-div
+{
+    margin-bottom:15px;
+}
+.user-type
+{
+    margin-right:15px;
 }

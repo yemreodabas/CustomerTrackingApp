@@ -12,6 +12,7 @@ namespace CustomerTrackingApp.Persistence
         void Insert(User user);
         UserModel GetById(int id);
         IEnumerable<UserModel> GetAll();
+        IEnumerable<UserModel> GetManagerById();
         int GetUserIdByLogin(string username, string password);
     }
 }

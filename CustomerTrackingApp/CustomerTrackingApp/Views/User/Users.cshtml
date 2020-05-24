@@ -1,12 +1,12 @@
 ﻿@model BaseViewModel
-<script type="text/javascript" src="~/scripts/User.Login.js"></script>
+<script type="text/javascript" src="~/scripts/Users.js"></script>
 <link rel="stylesheet" href="~/styles/home.css" />
 <link rel="stylesheet" href="~/styles/users.css" />
 <link rel="stylesheet" href="~/styles/btns.css" />
-<div class="user-list clearfix" id="user-login-form">
-    <button class="create-user-btn btns" id="create-user-btn">New User Add!</button>
+<div class="user-list clearfix" id="user-list">
+    <button class="create-user-btn btns" id="create-user-btn">Add New User!</button>
     <div class="user-list-header-div clearfix">
-        <span style="width:250px;" class="user-list-item">Full Name</span>
+        <span style="width:200px;" class="user-list-item">Full Name</span>
         <span class="user-list-item">Username</span>
         <span class="user-list-item">Email</span>
         <span class="user-list-item">Phone</span>
@@ -17,4 +17,37 @@
         <span class="user-list-item">BirthYear</span>
     </div>
 </div>
-<div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content" id="modal-content">
+        <span class="close">&times;</span>
+        <div class="create-user-title">Select Authority:</div>
+        <div class="create-user-div">
+            <select class="user-type" id="user-type">
+                <option value="1">Admin</option>
+                <option value="0">Manager</option>
+                <option value="2">Employee</option>
+            </select>
+            <button class="btns" id="type-btn">Type Check</button>
+        </div>
+        <div class="create-user-title">Username:</div>
+        <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-username" /></div>
+        <div class="create-user-title">Password:</div>
+        <div class="create-user-div"><input class="create-user-input" type="password" id="user-create-password" /></div>
+        <div class="create-user-title">Full Name:</div>
+        <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-fullname" /></div>
+        <div class="create-user-title">Email:</div>
+        <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-email" /></div>
+        <div class="create-user-title">Gender:</div>
+        <select class="gender" id="gender">
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+        <div class="create-user-title">Phone:</div>
+        <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-phone" /></div>
+        <div class="create-user-title">BirthYear:</div>
+        <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-birthyear" /></div>
+        <div class="create-user-div"><button class="btns" id="add-user-btn">Add User</button></div>
+    </div>
+    <div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
+</div>

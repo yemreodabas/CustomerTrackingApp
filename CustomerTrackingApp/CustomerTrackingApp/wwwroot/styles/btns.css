@@ -1,9 +1,10 @@
 ﻿.btns {
-    border:1px solid #020e2c;
+    background:none;
+    border:1px solid #630101;
     border-radius:5px 5px 5px 5px;
 
     padding: 6px 11px 6px 11px;
-    color: #020e2c;
+    color: #cb2001;
     font-weight:bold;
     outline:none;
     cursor:pointer;

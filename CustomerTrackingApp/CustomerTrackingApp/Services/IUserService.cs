@@ -13,6 +13,7 @@ namespace CustomerTrackingApp.Services
         bool AddNewUser(User user);
         List<UserModel> GetAllUsers();
         UserModel GetById(int id);
+        List<UserModel> GetManagerById();
         UserModel GetOnlineUser(HttpContext httpContext);
         void Logout(HttpContext httpContext);
         bool TryLogin(UserLoginModel loginData, HttpContext httpContext);
