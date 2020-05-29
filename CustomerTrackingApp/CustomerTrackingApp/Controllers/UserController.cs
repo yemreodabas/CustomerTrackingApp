@@ -11,10 +11,12 @@ namespace CustomerTrackingApp.Controllers
     public class UserController : Controller
     {
         private readonly IServices services;
+        private readonly IUserService _userService;
 
-        public UserController(IServices services)
+        public UserController(IServices services, IUserService userService)
         {
             this.services = services;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -27,6 +29,19 @@ namespace CustomerTrackingApp.Controllers
         {
             var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.Users));
             return View(model);
+        }
+        public IActionResult Profile(int id)
+        {
+            var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+            if(onlineUser != null)
+            {
+                var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.Profile));
+                model.UserId = id;
+
+                return View(model);
+            }
+
+            return View(ApiResponse.WithError("Not Authority"));
         }
 
         public IActionResult Logout()

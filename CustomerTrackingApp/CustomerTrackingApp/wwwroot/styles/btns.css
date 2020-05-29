@@ -1,11 +1,15 @@
 ﻿.btns {
-    background:none;
-    border:1px solid #630101;
-    border-radius:5px 5px 5px 5px;
-
+    background: #3f1980;
+    border: 1px solid #6829d3;
+    border-radius: 5px 5px 5px 5px;
     padding: 6px 11px 6px 11px;
-    color: #cb2001;
-    font-weight:bold;
-    outline:none;
-    cursor:pointer;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    transition:color 0.4s;
+}
+.btns:hover {
+    background: #5422aa;
 }

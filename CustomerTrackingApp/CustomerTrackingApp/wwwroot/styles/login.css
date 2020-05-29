@@ -1,20 +1,26 @@
-﻿.user-login-form
-{
-    margin-left:40px;
+﻿.user-login-form {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:50px;
 }
-.user-login-input {
+.user-login-form > h1
+{
+    color:#110767;
+}
+.user-login-div {
+    
     margin-bottom: 20px;
 }
 .form-title
 {
     margin-bottom:10px;
+    font-weight:bold;
+    font-size:18px;
 }
-.login-inputs
-{
-    border:1px solid black;
-    border-radius:5px 5px 5px 5px;
-
-    padding:5px 8px 5px 8px;
-
-    outline:none;
+.login-input {
+    border:none;
+    border-bottom: 2px solid #3f1980;
+    padding: 5px 8px 5px 8px;
+    outline: none;
 }

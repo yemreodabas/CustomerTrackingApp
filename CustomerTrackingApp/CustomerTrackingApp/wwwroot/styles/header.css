@@ -1,0 +1,11 @@
+﻿.header {
+    margin-bottom: 40px;
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.header > h2 {
+    font-weight: bold;
+    font-size: 22px;
+    color: #820c0c;
+}

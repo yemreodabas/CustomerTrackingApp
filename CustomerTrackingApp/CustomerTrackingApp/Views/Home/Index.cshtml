@@ -2,13 +2,14 @@
 <script type="text/javascript" src="~/scripts/User.Login.js"></script>
 <link rel="stylesheet" href="~/styles/login.css" />
 <link rel="stylesheet" href="~/styles/btns.css" />
+<input type="hidden" id="online-user-box" value="@Model.OnlineUser" />
 <div class="user-login-form" id="user-login-form">
     <h1>Login</h1>
     <div style="margin-bottom:60px;">
-        <div class="form-title">Username:</div>
-        <div class="user-login-input"><input class="login-inputs" type="text" id="user-login-username" /></div>
-        <div class="form-title">Password:</div>
-        <div class="user-login-input"><input class="login-inputs" type="text" id="user-login-password" /></div>
+        <div class="form-title">Username</div>
+        <div class="user-login-div"><input class="login-input" type="text" id="user-login-username" /></div>
+        <div class="form-title">Password</div>
+        <div class="user-login-div"><input class="login-input" type="password" id="user-login-password" /></div>
         <div style="margin-top:20px;"><button class="btns" id="user-login-btn">Login!</button></div>
     </div>
 </div>
