@@ -3,18 +3,32 @@
 <link rel="stylesheet" href="~/styles/home.css" />
 <link rel="stylesheet" href="~/styles/users.css" />
 <link rel="stylesheet" href="~/styles/btns.css" />
-<div class="user-list clearfix" id="user-list">
-    <button class="create-user-btn btns" id="create-user-btn">Add New User!</button>
-    <div class="user-list-header-div clearfix">
-        <span style="width:200px;" class="user-list-item">Full Name</span>
-        <span class="user-list-item">Username</span>
-        <span class="user-list-item">Email</span>
-        <span class="user-list-item">Phone</span>
-        <span class="user-list-item">Type</span>
-        <span class="user-list-item">Manager</span>
-        <span class="user-list-item">Gender</span>
-        <span class="user-list-item">Is Active</span>
-        <span class="user-list-item">BirthYear</span>
+<link rel="stylesheet" href="~/styles/header.css" />
+<div class="header" id="header">
+    <h2>HEADER</h2>
+    <ul class="nav-bar-item clearfix">
+        <li class="header-item">
+            <a class="header-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+    </ul>
+</div>
+<div class="users-container clearfix" id="users-container">
+    <div class="sidebar" id="sidebar">
+        <h2>MENU</h2>
+    </div>
+    <div class="user-list clearfix" id="user-list">
+        <button class="create-user-btn btns" id="create-user-btn">Add New User!</button>
+        <div class="user-list-header-div clearfix">
+            <span style="width:200px;" class="user-list-item">Full Name</span>
+            <span class="user-list-item">Username</span>
+            <span class="user-list-item">Email</span>
+            <span class="user-list-item">Phone</span>
+            <span class="user-list-item">Type</span>
+            <span class="user-list-item">Manager</span>
+            <span class="user-list-item">Gender</span>
+            <span class="user-list-item">Is Active</span>
+            <span class="user-list-item">BirthYear</span>
+        </div>
     </div>
 </div>
 <!-- The Modal -->
@@ -47,6 +61,11 @@
         <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-phone" /></div>
         <div class="create-user-title">BirthYear:</div>
         <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-birthyear" /></div>
+        <div class="create-user-title">Select Manager:</div>
+        <div class="create-user-div manager-title" id="manager-title">
+            <select class="manager-list" id="manager-list">
+            </select>
+        </div>
         <div class="create-user-div"><button class="btns" id="add-user-btn">Add User</button></div>
     </div>
     <div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>

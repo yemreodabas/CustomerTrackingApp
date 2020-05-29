@@ -2,7 +2,13 @@
 	let userCreateBtn = document.getElementById("user-login-btn");
 	userCreateBtn.onclick = tryLogin;
 
-	//tryGetOnlineUser();
+	let onlineUser = document.getElementById("online-user-box").value;
+
+	if (onlineUser != null && onlineUser != undefined && onlineUser != "") {
+
+		let loginForum = document.getElementById("user-login-form");
+		loginForum.style.display = "none";
+	}
 }
 
 function tryGetOnlineUser() {

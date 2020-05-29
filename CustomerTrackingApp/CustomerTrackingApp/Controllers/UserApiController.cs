@@ -67,6 +67,24 @@ namespace CustomerTrackingApp.Controllers
 			}
 		}
 
+		[HttpGet]
+		[Route(nameof(GetUserById))]
+		public ActionResult<ApiResponse> GetUserById(int userId)
+		{
+			try
+			{
+				var user = this._userService.GetById(userId);
+
+				var response = ApiResponse<UserModel>.WithSuccess(user);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
 		[HttpPost]
 		[Route(nameof(CreateUser))]
 		public ActionResult<ApiResponse<UserModel>> CreateUser([FromBody]CreateUserModel model)

@@ -1,0 +1,9 @@
+﻿@model UserViewModel
+<script type="text/javascript" src="~/scripts/Profile.js"></script>
+<link rel="stylesheet" href="~/styles/profile.css" />
+<link rel="stylesheet" href="~/styles/users.css" />
+<input type="hidden" id="userid-box" value="@Model.UserId" />
+<input type="hidden" id="online-user-box" value="@Model.OnlineUser.Id" />
+<h1>User Profile</h1>
+<div id="user-profile" style="margin-bottom:60px;"></div>
+<div id="error" style="margin-bottom:60px;display:none;"></div>

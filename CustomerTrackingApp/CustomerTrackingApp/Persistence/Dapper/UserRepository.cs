@@ -39,7 +39,7 @@ namespace CustomerTrackingApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<UserModel>("SELECT * FROM User WHERE  ManagerId != 0");
+				return dbConnection.Query<UserModel>("SELECT * FROM User WHERE  ManagerId == 0");
 			}
 		}
 
