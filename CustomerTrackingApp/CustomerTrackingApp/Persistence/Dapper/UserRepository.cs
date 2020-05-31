@@ -20,13 +20,13 @@ namespace CustomerTrackingApp.Persistence.Dapper
 			}
 		}
 
-		public IEnumerable<UserModel> GetFiveUsers(int pageNumber)
+		public IEnumerable<UserModel> GetUsersByPage(int pageNumber)
 		{
 			pageNumber = (pageNumber - 1) * 5;
 
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<UserModel>("SELECT * FROM User LIMIT 5 OFFSET @PageNumber ", new { PageNumber = pageNumber });
+				return dbConnection.Query<UserModel>("SELECT * FROM User LIMIT 5 OFFSET @PageNumber", new { PageNumber = pageNumber });
 			}
 		}
 
@@ -42,7 +42,7 @@ namespace CustomerTrackingApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.QuerySingle("SELECT Count(*) FROM User WHERE  Username = @Username", new { Username = username });
+				return dbConnection.QuerySingle<int>("SELECT COUNT(*) FROM User WHERE Username = @Username", new { Username = username });
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace CustomerTrackingApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.QuerySingle("SELECT Count(*) FROM User WHERE  Email = @Email", new { Email = email });
+				return dbConnection.QuerySingle<int>("SELECT COUNT(*) FROM User WHERE Email = @Email", new { Email = email });
 			}
 		}
 

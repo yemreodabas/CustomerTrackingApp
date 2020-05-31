@@ -52,12 +52,12 @@ namespace CustomerTrackingApp.Controllers
 		}
 
 		[HttpGet]
-		[Route(nameof(GetFiveCustomers))]
-		public ActionResult<ApiResponse<List<CustomerModel>>> GetFiveCustomers(int pageNumber)
+		[Route(nameof(GetCustomersByPageNumber))]
+		public ActionResult<ApiResponse<List<CustomerModel>>> GetCustomersByPageNumber(int pageNumber)
 		{
 			try
 			{
-				var users = this._customerService.GetFiveCustomers(pageNumber);
+				var users = this._customerService.GetCustomersByPageNumber(pageNumber);
 
 				var response = ApiResponse<List<CustomerModel>>.WithSuccess(users);
 
@@ -103,12 +103,12 @@ namespace CustomerTrackingApp.Controllers
 				var newCustomer = new Customer();
 				newCustomer.Fullname = model.Fullname;
 				newCustomer.Phone = model.Phone;
-				/*var phoneContains = this._customerService.PhoneCounter(model.Phone.ToString());
+				var phoneContains = this._customerService.PhoneCounter(model.Phone.ToString());
 
 				if (phoneContains >= 1)
 				{
 					return Json(ApiResponse.WithError("This Phone Exists"));
-				}*/
+				}
 
 				this._customerService.AddNewCustomer(newCustomer);
 

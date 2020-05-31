@@ -38,7 +38,7 @@ function tryGetUsers() {
 }
 
 function tryGetUsersByPageNumber(pageNumber) {
-	httpRequest("api/User/GetFiveUsers/?pageNumber=" + pageNumber, "GET", null, handleGetUsers, showError.bind(null, "System Error"));
+	httpRequest("api/User/GetUsersByPage/?pageNumber=" + pageNumber, "GET", null, handleGetUsersByPage, showError.bind(null, "System Error"));
 }
 
 function tryGetManagers() {
@@ -63,6 +63,10 @@ function tryGetManagers() {
 
 function redirectUserProfile(userId) {
 	redirect("User/Profile/" + userId);
+}
+
+function redirectUsers() {
+	redirect("User/Users/");
 }
 
 function handleGetManagers(response) {
@@ -104,6 +108,54 @@ function handleGetManagers(response) {
 		managerOption.innerHTML = manager.Username;
     }
 }
+function pagination() {
+	var pageCount = page.users.length / 5;
+	var pageNumbers = document.getElementById("page-numbers");
+
+	for (let i = 1; i < pageCount + 1; i++) {
+		var pageNumberBtn = document.createElement("button");
+		pageNumbers.appendChild(pageNumberBtn);
+		pageNumberBtn.id = "page-number-" + i;
+		pageNumberBtn.classList.add("page-number-btn");
+		pageNumberBtn.innerHTML = i;
+		pageNumberBtn.onclick = tryGetUsersByPageNumber.bind(null, i);
+    }
+}
+
+function handleGetUsersByPage(response) {
+	if (!response.Success) {
+		showError(response.ErrorMessage);
+		return;
+	}
+
+	let userListDiv = document.getElementById("user-list-element");
+	userListDiv.innerHTML = "";
+
+	page.usersByPage = response.Data;
+
+	for (let i = 0; i < page.usersByPage.length; i++) {
+		let user = page.usersByPage[i];
+
+		if (user.Type == 0) {
+			user.Type = "Manager";
+		}
+		else if (user.Type == 1) {
+			user.Type = "Admin";
+		}
+		else if (user.Type == 2) {
+			user.Type = "Employee";
+		}
+
+		if (user.Gender == 0) {
+			user.Gender = "Female";
+		}
+		else {
+			user.Gender = "Male";
+		}
+
+		appendUser(user);
+	}
+}
 
 function handleGetUsers(response) {
 	if (!response.Success) {
@@ -113,6 +165,10 @@ function handleGetUsers(response) {
 
 	page.users = response.Data;
 
+	pagination();
+	tryGetUsersByPageNumber(1);
+
+	/*
 	for (let i = 0; i < page.users.length; i++) {
 		let user = page.users[i];
 
@@ -134,9 +190,7 @@ function handleGetUsers(response) {
 		}
 
 		appendUser(user);
-		//let userCounter = page.userCounter;
-		page.userCounter++;
-	}
+	}*/
 }
 
 function tryInsertUser() {
@@ -199,17 +253,17 @@ function handleInsertUser(response) {
 	else{
 		user.Gender = "Male";
 	}
+	
+	appendUser(user);
 
-	if (page.userCounter < 5) {
-		appendUser(user);
-		page.userCounter++;
-	}
+	redirectUsers();
 
+	/*
 	var modal = document.getElementById("myModal");
 	var modalBackgrandDiv = document.getElementById("modal-backgrand");
 
 	modal.style.display = "none";
-	modalBackgrandDiv.style.display = "none";
+	modalBackgrandDiv.style.display = "none";*/
 }
 
 function appendUser(user) {
@@ -240,7 +294,7 @@ function appendUser(user) {
 
 	let userHtml = toDom(userHtmlString);
 
-	let userListDiv = document.getElementById("user-list");
+	let userListDiv = document.getElementById("user-list-element");
 	userListDiv.appendChild(userHtml);
 }
 

@@ -49,9 +49,9 @@ namespace CustomerTrackingApp.Services
             return this._customerRepository.PhoneCounter(PhoneCounter);
         }
 
-        public List<CustomerModel> GetFiveCustomers(int pageNumber)
+        public List<CustomerModel> GetCustomersByPageNumber(int pageNumber)
         {
-            var customers = this._customerRepository.GetFiveCustomers(pageNumber).ToList();
+            var customers = this._customerRepository.GetCustomersByPageNumber(pageNumber).ToList();
 
             return customers;
         }

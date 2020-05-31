@@ -12,3 +12,13 @@
 .btns:hover {
     background: #5422aa;
 }
+.page-number-btn
+{
+    padding:2px 5px 2px 5px;
+
+    margin-right:5px;
+}
+.current-page {
+    color: white;
+    background: #3f1980;
+}

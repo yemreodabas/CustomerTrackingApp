@@ -20,7 +20,7 @@ namespace CustomerTrackingApp.Persistence.Dapper
 			}
 		}
 
-		public IEnumerable<CustomerModel> GetFiveCustomers(int pageNumber)
+		public IEnumerable<CustomerModel> GetCustomersByPageNumber(int pageNumber)
 		{
 			pageNumber = (pageNumber - 1) * 5;
 
@@ -42,7 +42,7 @@ namespace CustomerTrackingApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.QuerySingle("SELECT Count(*) FROM Customer WHERE Phone = @Phone", new { Phone = phone });
+				return dbConnection.QuerySingle<int>("SELECT COUNT(*) FROM Customer WHERE Phone = @Phone", new { Phone = phone });
 			}
 		}
 

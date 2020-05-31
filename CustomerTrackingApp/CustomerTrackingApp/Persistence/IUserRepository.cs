@@ -11,7 +11,7 @@ namespace CustomerTrackingApp.Persistence
     {
         void Insert(User user);
         UserModel GetById(int id);
-        IEnumerable<UserModel> GetFiveUsers(int pageNumber);
+        IEnumerable<UserModel> GetUsersByPage(int pageNumber);
         IEnumerable<UserModel> GetAll();
         int EmailCounter(string email);
         int UserCounter(string username);

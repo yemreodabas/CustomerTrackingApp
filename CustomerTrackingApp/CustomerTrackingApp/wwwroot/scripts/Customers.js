@@ -1,8 +1,6 @@
 ﻿function main() {
 	tryGetCustomer();
 
-	page.userCounter = 0;
-
 	var modal = document.getElementById("myModal");
 	var modalBackgrandDiv = document.getElementById("modal-backgrand");
 	var userHeader = document.getElementsByTagName('header')[0];
@@ -35,8 +33,8 @@ function tryGetCustomer() {
 	httpRequest("api/Customer/GetActiveCustomers", "GET", null, handleGetCustomers, showError.bind(null, "System Error"));
 }
 
-function tryGetUsersByPageNumber(pageNumber) {
-	httpRequest("api/Customer/GetFiveCustomers/?pageNumber=" + pageNumber, "GET", null, handleGetCustomers, showError.bind(null, "System Error"));
+function tryGetCustomersByPageNumber(pageNumber) {
+	httpRequest("api/Customer/GetCustomersByPageNumber/?pageNumber=" + pageNumber, "GET", null, handleGetCustomersByPage, showError.bind(null, "System Error"));
 }
 
 function handleGetCustomers(response) {
@@ -45,14 +43,43 @@ function handleGetCustomers(response) {
 		return;
 	}
 
-	page.users = response.Data;
+	page.customers = response.Data;
 
-	for (let i = 0; i < page.users.length; i++) {
-		let customer = page.users[i];
+	pagination();
+	tryGetCustomersByPageNumber(1);
+}
+
+function pagination() {
+	var pageCount = page.customers.length / 5;
+	var pageNumbers = document.getElementById("page-numbers");
+
+	for (let i = 1; i < pageCount + 1; i++) {
+		var pageNumberBtn = document.createElement("button");
+		pageNumbers.appendChild(pageNumberBtn);
+		pageNumberBtn.id = "page-number-" + i;
+		pageNumberBtn.classList.add("page-number-btn");
+		pageNumberBtn.innerHTML = i;
+		pageNumberBtn.onclick = tryGetCustomersByPageNumber.bind(null, i);
+	}
+}
+
+function handleGetCustomersByPage(response) {
+	if (!response.Success) {
+		showError(response.ErrorMessage);
+		return;
+	}
+
+	let userListDiv = document.getElementById("user-list-element");
+	userListDiv.innerHTML = "";
+
+	let pageBtn = document.getElementById("user-list-element");
+
+	page.customersByPage = response.Data;
+
+	for (let i = 0; i < page.customersByPage.length; i++) {
+		let customer = page.customersByPage[i];
 
 		appendCustomer(customer);
-		//let userCounter = page.userCounter;
-		page.userCounter++;
 	}
 }
 
@@ -97,7 +124,7 @@ function appendCustomer(customer) {
 
 	let customerHtml = toDom(customerHtmlString);
 
-	let userListDiv = document.getElementById("customer-list");
+	let userListDiv = document.getElementById("user-list-element");
 	userListDiv.appendChild(customerHtml);
 }
 
