@@ -1,9 +1,26 @@
 ﻿@model UserViewModel
-<script type="text/javascript" src="~/scripts/Profile.js"></script>
-<link rel="stylesheet" href="~/styles/profile.css" />
-<link rel="stylesheet" href="~/styles/users.css" />
+    <script type="text/javascript" src="~/scripts/Profile.js"></script>
+    <link rel="stylesheet" href="~/styles/users.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <input type="hidden" id="userid-box" value="@Model.UserId" />
 <input type="hidden" id="online-user-box" value="@Model.OnlineUser.Id" />
-<h1>User Profile</h1>
-<div id="user-profile" style="margin-bottom:60px;"></div>
+<h1>USER</h1>
+<div class="users-container clearfix" id="users-container">
+    <div class="sidebar" id="sidebar">
+        <h2>MENU</h2>
+    </div>
+    <div class="user-list clearfix" id="user-list">
+        <div class="user-list-header-div clearfix">
+            <span style="width:200px;" class="user-list-item">Full Name</span>
+            <span class="user-list-item">Username</span>
+            <span class="user-list-item">Email</span>
+            <span class="user-list-item">Phone</span>
+            <span class="user-list-item">Type</span>
+            <span class="user-list-item">Manager Id</span>
+            <span class="user-list-item">Gender</span>
+            <span class="user-list-item">Is Active</span>
+            <span class="user-list-item">BirthYear</span>
+        </div>
+    </div>
+</div>
 <div id="error" style="margin-bottom:60px;display:none;"></div>

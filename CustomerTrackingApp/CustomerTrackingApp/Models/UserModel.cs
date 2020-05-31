@@ -28,6 +28,12 @@ namespace CustomerTrackingApp.Models
 			this.Username = user.Username;
 			this.Email = user.Email;
 			this.BirthYear = user.BirthYear;
+			this.Phone = user.BirthYear;
+			this.Fullname = user.Fullname;
+			this.Type = user.Type;
+			this.Gender = user.Gender;
+			this.ManagerId = user.ManagerId;
+			this.IsActive = user.IsActive;
 		}
 	}
 }

@@ -28,8 +28,8 @@ namespace CustomerTrackingApp.Controllers
 			try
 			{
 				var users = this._userService.GetAllUsers();
-				List<UserModel> userList = new List<UserModel>();
-
+				//List<UserModel> userList = new List<UserModel>();
+				/*
 				for(int i =0; i < users.Count; i++)
 				{
 					if(i == 5)
@@ -37,9 +37,27 @@ namespace CustomerTrackingApp.Controllers
 						break;
 					}
 					userList.Add(users[i]);
-				}
+				}*/
 
-				var response = ApiResponse<List<UserModel>>.WithSuccess(userList);
+				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse<List<UserModel>>.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetFiveUsers))]
+		public ActionResult<ApiResponse<List<UserModel>>> GetFiveUsers(int pageNumber)
+		{
+			try
+			{
+				var users = this._userService.GetFiveUsers(pageNumber);
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
 
 				return Json(response);
 			}
@@ -118,7 +136,19 @@ namespace CustomerTrackingApp.Controllers
 
 				var newUser = new User();
 				newUser.Username = model.Username;
+				var userNameContains = this._userService.UsernameCounter(newUser.Username);
+
+				if(userNameContains >= 1)
+				{
+					return Json(ApiResponse.WithError("This Username Exists"));
+				}
 				newUser.Email = model.Email;
+				var emailContains = this._userService.EmailCounter(newUser.Email);
+
+				if (emailContains >= 1)
+				{
+					return Json(ApiResponse.WithError("This Email Exists"));
+				}
 				newUser.Password = model.Password;
 				newUser.ManagerId = model.ManagerId;
 				newUser.Phone = model.Phone;
@@ -128,15 +158,10 @@ namespace CustomerTrackingApp.Controllers
 				newUser.BirthYear = model.BirthYear;
 				newUser.Fullname = model.Fullname;
 
-				bool userCheck = this._userService.AddNewUser(newUser);
+				this._userService.AddNewUser(newUser);
 
-				if (userCheck == true)
-				{
-					result = this._userService.GetById(newUser.Id);
-					return Json(ApiResponse<UserModel>.WithSuccess(result));
-				}
-
-				return Json(ApiResponse<UserModel>.WithError("User Exist"));
+				result = this._userService.GetById(newUser.Id);
+				return Json(ApiResponse<UserModel>.WithSuccess(result));
 			}
 			catch (Exception exp)
 			{

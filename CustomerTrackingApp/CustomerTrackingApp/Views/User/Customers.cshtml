@@ -1,0 +1,40 @@
+﻿@model BaseViewModel
+<script type="text/javascript" src="~/scripts/Customers.js"></script>
+<link rel="stylesheet" href="~/styles/Customers.css" />
+<link rel="stylesheet" href="~/styles/users.css" />
+<link rel="stylesheet" href="~/styles/modal.css" />
+<link rel="stylesheet" href="~/styles/btns.css" />
+<link rel="stylesheet" href="~/styles/header.css" />
+<div class="header" id="header">
+    <h2>CUSTOMERS</h2>
+    <ul class="nav-bar-item clearfix">
+        <li class="header-item">
+            <a class="header-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+    </ul>
+</div>
+<div class="users-container clearfix" id="users-container">
+    <div class="sidebar" id="sidebar">
+        <h2>MENU</h2>
+    </div>
+    <div class="customer-list clearfix" id="customer-list">
+        <button class="create-user-btn btns" id="create-customer-btn">Add New Customer!</button>
+        <div class="user-list-header-div clearfix">
+            <span style="width:250px;" class="customer-list-item">Full Name</span>
+            <span class="customer-list-item">Phone</span>
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal-backgrand" id="modal-backgrand"></div>
+<div id="myModal" class="modal customer-modal">
+    <div class="modal-content" id="modal-content">
+        <span class="close">&times;</span>
+        <div class="create-user-title">Full Name:</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="customer-fullname" /></div>
+        <div class="create-user-title">Phone:</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="customer-phone" /></div>
+        <div class="create-user-div"><button class="btns" id="add-customer-btn">Add Customer</button></div>
+    </div>
+</div>
+<div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>

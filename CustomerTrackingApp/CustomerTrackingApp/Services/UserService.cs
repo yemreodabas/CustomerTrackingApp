@@ -31,24 +31,10 @@ namespace CustomerTrackingApp.Services
             return this._userRepository.GetById(onlineUserId.Value);
         }
 
-        public bool AddNewUser(User user)
+        public void AddNewUser(User user)
         {
-            bool userCheck = true;
-
-            List<UserModel> userList = GetAllUsers();
-
-            for (int i = 0; i < userList.Count; i++)
-            {
-                if (user.Username == userList[i].Username)
-                {
-                    return false;
-                }
-            }
-
             this._userRepository.Insert(user);
             this._logRepository.Log(Enums.LogType.Info, $"Inserted New User : {user.Username}");
-
-            return userCheck;
         }
 
         public UserModel GetById(int id)
@@ -59,10 +45,26 @@ namespace CustomerTrackingApp.Services
         {
             return this._userRepository.GetManagerById().ToList();
         }
+        public int UsernameCounter(string username)
+        {
+            return this._userRepository.UserCounter(username);
+        }
+
+        public int EmailCounter(string email)
+        {
+            return this._userRepository.EmailCounter(email);
+        }
 
         public void Logout(HttpContext httpContext)
         {
             httpContext.Session.Remove("onlineUserId");
+        }
+
+        public List<UserModel> GetFiveUsers(int pageNumber)
+        {
+            var users = this._userRepository.GetFiveUsers(pageNumber).ToList();
+
+            return users;
         }
 
         public List<UserModel> GetAllUsers()

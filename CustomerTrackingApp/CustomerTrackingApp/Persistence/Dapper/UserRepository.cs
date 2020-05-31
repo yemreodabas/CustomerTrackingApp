@@ -19,11 +19,38 @@ namespace CustomerTrackingApp.Persistence.Dapper
 				user.Id = dbConnection.ExecuteScalar<int>("SELECT last_insert_rowid()");
 			}
 		}
+
+		public IEnumerable<UserModel> GetFiveUsers(int pageNumber)
+		{
+			pageNumber = (pageNumber - 1) * 5;
+
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<UserModel>("SELECT * FROM User LIMIT 5 OFFSET @PageNumber ", new { PageNumber = pageNumber });
+			}
+		}
+
 		public IEnumerable<UserModel> GetAll()
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
 				return dbConnection.Query<UserModel>("SELECT * FROM User");
+			}
+		}
+
+		public int UserCounter(string username)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.QuerySingle("SELECT Count(*) FROM User WHERE  Username = @Username", new { Username = username });
+			}
+		}
+
+		public int EmailCounter(string email)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.QuerySingle("SELECT Count(*) FROM User WHERE  Email = @Email", new { Email = email });
 			}
 		}
 
