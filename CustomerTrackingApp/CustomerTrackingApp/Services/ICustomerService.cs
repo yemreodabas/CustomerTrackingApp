@@ -12,7 +12,7 @@ namespace CustomerTrackingApp.Services
     {
         void AddNewCustomer(Customer customer);
         List<CustomerModel> GetAllCustomers();
-        List<CustomerModel> GetFiveCustomers(int pageNumber);
+        List<CustomerModel> GetCustomersByPageNumber(int pageNumber);
         int PhoneCounter(string PhoneCounter);
         CustomerModel GetById(int id);
     }

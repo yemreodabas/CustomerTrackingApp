@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="~/styles/home.css" />
 <link rel="stylesheet" href="~/styles/users.css" />
 <link rel="stylesheet" href="~/styles/select.css" />
+<link rel="stylesheet" href="~/styles/main.css" />
 <link rel="stylesheet" href="~/styles/modal.css" />
 <link rel="stylesheet" href="~/styles/btns.css" />
 <link rel="stylesheet" href="~/styles/header.css" />
@@ -32,6 +33,7 @@
             <span class="user-list-item">Is Active</span>
             <span class="user-list-item">BirthYear</span>
         </div>
+        <div id="user-list-element"></div>
     </div>
 </div>
 <!-- The Modal -->
@@ -70,9 +72,5 @@
         <div class="create-user-div"><button class="btns" id="add-user-btn">Add User</button></div>
     </div>
 </div>
-<div class="page-numbers">
-    <button value="1" class="page-number" id="page-number-1">1</button>
-    <button value="2" class="page-number" id="page-number-1">2</button>
-    <button value="3" class="page-number" id="page-number-1">3</button>
-</div>
+<div class="page-numbers" id="page-numbers"></div>
 <div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>

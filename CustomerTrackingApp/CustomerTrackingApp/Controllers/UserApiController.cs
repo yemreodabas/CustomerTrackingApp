@@ -50,12 +50,12 @@ namespace CustomerTrackingApp.Controllers
 		}
 
 		[HttpGet]
-		[Route(nameof(GetFiveUsers))]
-		public ActionResult<ApiResponse<List<UserModel>>> GetFiveUsers(int pageNumber)
+		[Route(nameof(GetUsersByPage))]
+		public ActionResult<ApiResponse<List<UserModel>>> GetUsersByPage(int pageNumber)
 		{
 			try
 			{
-				var users = this._userService.GetFiveUsers(pageNumber);
+				var users = this._userService.GetUsersByPage(pageNumber);
 
 				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
 
@@ -84,7 +84,7 @@ namespace CustomerTrackingApp.Controllers
 				return Json(ApiResponse<List<UserModel>>.WithError(exp.ToString()));
 			}
 		}
-
+		
 		[HttpGet]
 		[Route(nameof(GetUserById))]
 		public ActionResult<ApiResponse> GetUserById(int userId)
@@ -102,7 +102,7 @@ namespace CustomerTrackingApp.Controllers
 				return Json(ApiResponse.WithError(exp.ToString()));
 			}
 		}
-
+		
 		[HttpPost]
 		[Route(nameof(CreateUser))]
 		public ActionResult<ApiResponse<UserModel>> CreateUser([FromBody]CreateUserModel model)

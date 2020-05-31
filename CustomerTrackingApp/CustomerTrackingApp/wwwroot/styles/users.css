@@ -16,9 +16,6 @@
     position: relative;
     width: 80%;
 }
-.user-list :hover {
-    background:#ebe7e7;
-}
 .user-list-header-div {
     background: #ddd5d5;
     padding: 15px 20px 15px 20px;
@@ -77,10 +74,4 @@
 .manager-title
 {
     display:none;
-}
-.page-numbers
-{
-    margin-top:50px;
-
-    text-align:center;
 }

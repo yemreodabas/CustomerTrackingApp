@@ -60,9 +60,9 @@ namespace CustomerTrackingApp.Services
             httpContext.Session.Remove("onlineUserId");
         }
 
-        public List<UserModel> GetFiveUsers(int pageNumber)
+        public List<UserModel> GetUsersByPage(int pageNumber)
         {
-            var users = this._userRepository.GetFiveUsers(pageNumber).ToList();
+            var users = this._userRepository.GetUsersByPage(pageNumber).ToList();
 
             return users;
         }

@@ -12,7 +12,7 @@ namespace CustomerTrackingApp.Persistence
         void Insert(Customer customer);
         CustomerModel GetById(int id);
         int PhoneCounter(string phone);
-        IEnumerable<CustomerModel> GetFiveCustomers(int pageNumber);
+        IEnumerable<CustomerModel> GetCustomersByPageNumber(int pageNumber);
         IEnumerable<CustomerModel> GetAll();
     }
 }
