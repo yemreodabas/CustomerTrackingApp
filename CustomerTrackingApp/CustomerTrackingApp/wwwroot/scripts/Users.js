@@ -1,7 +1,10 @@
 ﻿function main() {
 	tryGetUsers();
 
+	page.userCounter = 0;
+
 	var modal = document.getElementById("myModal");
+	var modalBackgrandDiv = document.getElementById("modal-backgrand");
 	var userHeader = document.getElementsByTagName('header')[0];
 	var addUserBtn = document.getElementById("add-user-btn");
 	var typeBtn = document.getElementById("type-btn");
@@ -14,17 +17,28 @@
 
 	btn.onclick = function () {
 		modal.style.display = "block";
+		modalBackgrandDiv.style.display = "block";
 	}
 
 	span.onclick = function () {
 		modal.style.display = "none";
+		modalBackgrandDiv.style.display = "none";
 	}
 
 	window.onclick = function (event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
+			modalBackgrandDiv.style.display = "none";
 		}
 	}
+}
+
+function tryGetUsers() {
+	httpRequest("api/User/GetActiveUsers", "GET", null, handleGetUsers, showError.bind(null, "System Error"));
+}
+
+function tryGetUsersByPageNumber(pageNumber) {
+	httpRequest("api/User/GetFiveUsers/?pageNumber=" + pageNumber, "GET", null, handleGetUsers, showError.bind(null, "System Error"));
 }
 
 function tryGetManagers() {
@@ -60,8 +74,8 @@ function handleGetManagers(response) {
 	page.managers = response.Data;
 
 	//var managerTitleDiv = document.createElement("div");
-	//var managerSelect = document.createElement("select");
-	var managerOption = document.createElement("option");
+	var managerSelect = document.createElement("select");
+	//var managerOption = document.createElement("option");
 
 	/*document.getElementById("modal-content").appendChild(managerTitleDiv);
 	managerTitleDiv.innerHTML = "Select Manager";
@@ -71,6 +85,11 @@ function handleGetManagers(response) {
 	managerSelect.className = "manager-list";
 	managerSelect.id = "manager-list";*/
 
+	document.getElementById("manager-title").appendChild(managerSelect);
+	managerSelect.id = "manager-list";
+	managerSelect.className = "select";
+	managerSelect.classList.add("manager-list");
+
 	var managerList = document.getElementById("manager-list");
 	managerList.style.display = "block";
 
@@ -79,15 +98,11 @@ function handleGetManagers(response) {
 
 	for (let i = 0; i < page.managers.length; i++) {
 		let manager = page.managers[i];
+		var managerOption = document.createElement("option");
 		managerList.appendChild(managerOption);
-		managerOption.id = "manager-list";
 		managerOption.value = manager.Id;
 		managerOption.innerHTML = manager.Username;
     }
-}
-
-function tryGetUsers() {
-	httpRequest("api/User/GetActiveUsers", "GET", null, handleGetUsers, showError.bind(null, "System Error"));
 }
 
 function handleGetUsers(response) {
@@ -100,7 +115,27 @@ function handleGetUsers(response) {
 
 	for (let i = 0; i < page.users.length; i++) {
 		let user = page.users[i];
+
+		if (user.Type == 0) {
+			user.Type = "Manager";
+		}
+		else if (user.Type == 1) {
+			user.Type = "Admin";
+		}
+		else if (user.Type == 2) {
+			user.Type = "Employee";
+		}
+
+		if (user.Gender == 0) {
+			user.Gender = "Female";
+		}
+		else {
+			user.Gender = "Male";
+		}
+
 		appendUser(user);
+		//let userCounter = page.userCounter;
+		page.userCounter++;
 	}
 }
 
@@ -147,7 +182,34 @@ function handleInsertUser(response) {
 	}
 
 	let user = response.Data;
-	appendUser(user);
+
+	if (user.Type == 0) {
+		user.Type = "Manager";
+	}
+	else if (user.ManagerId == 1) {
+		user.Type = "Admin";
+	}
+	else if (user.ManagerId == 2) {
+		user.Type = "Employee";
+	}
+
+	if (user.Gender == 0) {
+		user.Gender = "Female";
+	}
+	else{
+		user.Gender = "Male";
+	}
+
+	if (page.userCounter < 5) {
+		appendUser(user);
+		page.userCounter++;
+	}
+
+	var modal = document.getElementById("myModal");
+	var modalBackgrandDiv = document.getElementById("modal-backgrand");
+
+	modal.style.display = "none";
+	modalBackgrandDiv.style.display = "none";
 }
 
 function appendUser(user) {

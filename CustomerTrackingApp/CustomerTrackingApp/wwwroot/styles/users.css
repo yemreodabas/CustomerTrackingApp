@@ -36,11 +36,12 @@
 .user-list-item {
     display: block;
     float: left;
-
-    width:120px;
-
-    margin-right:12px;
-    overflow:hidden;
+    width: 120px;
+    margin-right: 12px;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
 }
 .create-user-btn
 {
@@ -56,30 +57,6 @@
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
-}
-.modal {
-    display: none;
-}
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-}
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }
 .create-user-title
 {
@@ -100,4 +77,10 @@
 .manager-title
 {
     display:none;
+}
+.page-numbers
+{
+    margin-top:50px;
+
+    text-align:center;
 }

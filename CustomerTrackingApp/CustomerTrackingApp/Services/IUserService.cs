@@ -10,9 +10,12 @@ namespace CustomerTrackingApp.Services
 {
     public interface IUserService
     {
-        bool AddNewUser(User user);
+        void AddNewUser(User user);
         List<UserModel> GetAllUsers();
+        List<UserModel> GetFiveUsers(int pageNumber);
         UserModel GetById(int id);
+        int EmailCounter(string email);
+        int UsernameCounter(string username);
         List<UserModel> GetManagerById();
         UserModel GetOnlineUser(HttpContext httpContext);
         void Logout(HttpContext httpContext);

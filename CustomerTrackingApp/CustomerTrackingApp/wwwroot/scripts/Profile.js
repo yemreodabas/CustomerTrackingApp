@@ -1,33 +1,15 @@
 ﻿function main() {
 	let userId = document.getElementById("userid-box").value;
 	let onlineUser = document.getElementById("online-user-box").value;
+	var userHeader = document.getElementsByTagName('header')[0];
+
+	userHeader.style.display = "none";
 
 	tryGetUserById(userId);
 }
 
 function tryGetUserById(userId) {
 	httpRequest("api/User/GetUserById/?userId=" + userId, "GET", null, handleGetUser, showError.bind(null, "System Error"));
-}
-
-function tryLogin() {
-	let username = document.getElementById("user-login-username").value;
-	let password = document.getElementById("user-login-password").value;
-
-	let data = {
-		Username: username,
-		Password: password,
-	};
-
-	httpRequest("api/User/Login", "POST", data, handleLogin, showError.bind(null, "System Error"));
-}
-
-function handleLogin(response) {
-	if (!response.Success) {
-		showError(response.ErrorMessage);
-		return;
-	}
-
-	redirect("Home/Index");
 }
 
 function handleGetUser(response) {
@@ -38,6 +20,23 @@ function handleGetUser(response) {
 
 	page.user = response.Data;
 	let user = page.user;
+
+	if (user.Type == 0) {
+		user.Type = "Manager";
+	}
+	else if (user.ManagerId == 1) {
+		user.Type = "Admin";
+	}
+	else if (user.ManagerId == 2) {
+		user.Type = "Employee";
+	}
+
+	if (user.Gender == 0) {
+		user.Gender = "Female";
+	}
+	else {
+		user.Gender = "Male";
+	}
 
 	appendUser(user);
 }
@@ -61,7 +60,7 @@ function handleGetOnlineUser(response) {
 function appendUser(user) {
 	let userProfileUrl = generateHref("User/Profile/##user.Id##")
 	let userTemplate = '<div class="user-list-div clearfix" id="user-id-##user.Id##">';
-	userTemplate += '<span class="user-list-item">##user.Fullname##</span>';
+	userTemplate += '<span style="width:200px;" class="user-list-item">##user.Fullname##</span>';
 	userTemplate += '<a href="' + userProfileUrl + '" class="user-list-item user-profile-link">##user.Username##</a>';
 	userTemplate += '<span class="user-list-item">##user.Email##</span>';
 	userTemplate += '<span class="user-list-item">##user.Phone##</span>';
@@ -86,7 +85,7 @@ function appendUser(user) {
 
 	let userHtml = toDom(userHtmlString);
 
-	let userListDiv = document.getElementById("user-profile");
+	let userListDiv = document.getElementById("user-list");
 	userListDiv.appendChild(userHtml);
 }
 

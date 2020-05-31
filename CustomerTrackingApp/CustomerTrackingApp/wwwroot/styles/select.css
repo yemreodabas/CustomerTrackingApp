@@ -1,0 +1,7 @@
+﻿.select
+{
+    border:2px solid black;
+    border-radius:5px 5px 5px 5px;
+    padding: 3px 5px 3px 6px;
+    font-weight:bold;
+}

@@ -2,10 +2,13 @@
 <script type="text/javascript" src="~/scripts/Users.js"></script>
 <link rel="stylesheet" href="~/styles/home.css" />
 <link rel="stylesheet" href="~/styles/users.css" />
+<link rel="stylesheet" href="~/styles/select.css" />
+<link rel="stylesheet" href="~/styles/modal.css" />
 <link rel="stylesheet" href="~/styles/btns.css" />
 <link rel="stylesheet" href="~/styles/header.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <div class="header" id="header">
-    <h2>HEADER</h2>
+    <h2>USERS</h2>
     <ul class="nav-bar-item clearfix">
         <li class="header-item">
             <a class="header-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -24,7 +27,7 @@
             <span class="user-list-item">Email</span>
             <span class="user-list-item">Phone</span>
             <span class="user-list-item">Type</span>
-            <span class="user-list-item">Manager</span>
+            <span class="user-list-item">Manager Id</span>
             <span class="user-list-item">Gender</span>
             <span class="user-list-item">Is Active</span>
             <span class="user-list-item">BirthYear</span>
@@ -32,12 +35,13 @@
     </div>
 </div>
 <!-- The Modal -->
+<div class="modal-backgrand" id="modal-backgrand"></div>
 <div id="myModal" class="modal">
     <div class="modal-content" id="modal-content">
         <span class="close">&times;</span>
         <div class="create-user-title">Select Authority:</div>
         <div class="create-user-div">
-            <select class="user-type" id="user-type">
+            <select class="user-type select" id="user-type">
                 <option value="1">Admin</option>
                 <option value="0">Manager</option>
                 <option value="2">Employee</option>
@@ -53,7 +57,7 @@
         <div class="create-user-title">Email:</div>
         <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-email" /></div>
         <div class="create-user-title">Gender:</div>
-        <select class="gender" id="gender">
+        <select class="gender select" id="gender">
             <option value="0">Female</option>
             <option value="1">Male</option>
         </select>
@@ -62,11 +66,13 @@
         <div class="create-user-title">BirthYear:</div>
         <div class="create-user-div"><input class="create-user-input" type="text" id="user-create-birthyear" /></div>
         <div class="create-user-title">Select Manager:</div>
-        <div class="create-user-div manager-title" id="manager-title">
-            <select class="manager-list" id="manager-list">
-            </select>
-        </div>
+        <div class="create-user-div manager-title" id="manager-title"></div>
         <div class="create-user-div"><button class="btns" id="add-user-btn">Add User</button></div>
     </div>
-    <div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
 </div>
+<div class="page-numbers">
+    <button value="1" class="page-number" id="page-number-1">1</button>
+    <button value="2" class="page-number" id="page-number-1">2</button>
+    <button value="3" class="page-number" id="page-number-1">3</button>
+</div>
+<div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>

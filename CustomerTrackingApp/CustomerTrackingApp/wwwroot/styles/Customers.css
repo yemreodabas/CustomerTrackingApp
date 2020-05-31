@@ -1,0 +1,15 @@
+﻿.customer-list {
+    float: right;
+    position: relative;
+    width: 80%;
+}
+.user-list :hover {
+    background:#ebe7e7;
+}
+.customer-list-item {
+    display: block;
+    float: left;
+    width: 250px;
+    margin-right: 12px;
+    overflow: hidden;
+}

@@ -44,6 +44,20 @@ namespace CustomerTrackingApp.Controllers
             return View(ApiResponse.WithError("Not Authority"));
         }
 
+        public IActionResult Customers(int id)
+        {
+            var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+            if (onlineUser != null)
+            {
+                var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.Customers));
+                model.UserId = id;
+
+                return View(model);
+            }
+
+            return View(ApiResponse.WithError("Not Authority"));
+        }
+
         public IActionResult Logout()
         {
             this.services.UserService.Logout(this.HttpContext);

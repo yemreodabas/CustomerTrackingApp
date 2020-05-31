@@ -49,9 +49,11 @@ namespace CustomerTrackingApp
             services.AddSingleton<IServices, ServiceContainer>();
 
             services.AddSingleton<IUserRepository, Persistence.Dapper.UserRepository>();
+            services.AddSingleton<ICustomerRepository, Persistence.Dapper.CustomerRepository>();
             services.AddSingleton<ILogRepository, Persistence.Dapper.LogRepository>();
 
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IViewService, ViewService>();
 
         }
