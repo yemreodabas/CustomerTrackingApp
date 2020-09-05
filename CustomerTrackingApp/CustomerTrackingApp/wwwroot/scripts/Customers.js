@@ -111,7 +111,7 @@ function handleInsertCustomer(response) {
 }
 
 function appendCustomer(customer) {
-	let customerProfileUrl = generateHref("Customer/Profile/##customer.Id##")
+	let customerProfileUrl = generateHref("Customer/CustomerProfile/##customer.Id##")
 	let customerTemplate = '<div class="user-list-div clearfix" id="customer-id-##customer.Id##">';
 	customerTemplate += '<a href="' + customerProfileUrl + '" class="customer-list-item user-profile-link">##customer.Fullname##</a>';
 	customerTemplate += '<span class="customer-list-item">##customer.Phone##</span>';

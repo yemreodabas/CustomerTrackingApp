@@ -1,0 +1,76 @@
+﻿@model UserViewModel
+<script type="text/javascript" src="~/scripts/CustomerProfile.js"></script>
+<link rel="stylesheet" href="~/styles/Customers.css" />
+<link rel="stylesheet" href="~/styles/users.css" />
+<link rel="stylesheet" href="~/styles/main.css" />
+<link rel="stylesheet" href="~/styles/modal.css" />
+<link rel="stylesheet" href="~/styles/btns.css" />
+<link rel="stylesheet" href="~/styles/header.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<input type="hidden" id="userid-box" value="@Model.UserId" />
+<input type="hidden" id="online-user-box" value="@Model.OnlineUser.Id" />
+<div class="header" id="header">
+    <h2>CUSTOMERS</h2>
+    <ul class="nav-bar-item clearfix">
+        <li class="header-item">
+            <a class="header-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+    </ul>
+</div>
+<div class="customer-info" id="customer-info" ></div>
+<div class="users-container clearfix" id="users-container">
+    <div class="user-list clearfix" id="customer-list">
+        <div class="customer-profile-btn-div">
+            <button class="customer-profile-btn btns" id="add-product-return-btn">Product Return</button>
+            <button class="customer-profile-btn btns" id="add-payment-btn">Add Payment</button>
+            <button class="customer-profile-btn btns" id="add-purchase-btn">Add Purchase</button>
+        </div>
+        <div class="user-list-header-div clearfix">
+            <span style="width:250px;" class="customer-list-item">Acticity</span>
+            <span class="customer-list-item">Description</span>
+            <span class="customer-list-item">Amount</span>
+        </div>
+        <div id="activity-list"></div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal-backgrand" id="modal-backgrand"></div>
+<div id="purchase-modal" class="modal customer-modal">
+    <div class="modal-content" id="modal-content">
+        <span class="close" id="close-purchase">&times;</span>
+        <h2>Purchase</h2>
+        <div class="create-user-title">Description</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="purchase-description" /></div>
+        <div class="create-user-title">Product Amount</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="purchase-amount" /></div>
+        <div class="create-user-title">Payment Total</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="purchase-payment-total" /></div>
+        <div class="create-user-div"><button class="btns" id="modal-add-purchase-btn">Save It</button></div>
+        <div id="error-purchase" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
+    </div>
+</div>
+<div id="payment-modal" class="modal customer-modal">
+    <div class="modal-content" id="modal-content">
+        <span class="close" id="close-payment">&times;</span>
+        <h2>Payment</h2>
+        <div class="create-user-title">Description</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="payment-description" /></div>
+        <div class="create-user-title">Product Amount</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="payment-amount" /></div>
+        <div class="create-user-div"><button class="btns" id="modal-add-payment-btn">Save It</button></div>
+        <div id="error-payment" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
+    </div>
+</div>
+<div id="product-return-modal" class="modal customer-modal">
+    <div class="modal-content" id="modal-content">
+        <span class="close" id="close-product-return">&times;</span>
+        <h2>Product Return</h2>
+        <div class="create-user-title">Description</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="product-return-description" /></div>
+        <div class="create-user-title">Total Amount</div>
+        <div class="create-user-div"><input class="create-customer-input" type="text" id="product-total-amount" /></div>
+        <div class="create-user-div"><button class="btns" id="modal-add-product-return-btn">Save It</button></div>
+        <div id="error-product-return" style="margin-bottom:60px;margin-left:40px;display:none;"></div>
+    </div>
+</div>
+<div id="error" style="margin-bottom:60px;margin-left:40px;display:none;"></div>

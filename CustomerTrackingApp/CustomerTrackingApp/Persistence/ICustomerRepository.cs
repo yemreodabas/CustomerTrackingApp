@@ -14,5 +14,9 @@ namespace CustomerTrackingApp.Persistence
         int PhoneCounter(string phone);
         IEnumerable<CustomerModel> GetCustomersByPageNumber(int pageNumber);
         IEnumerable<CustomerModel> GetAll();
+        void ActivityInsert(Activity activity);
+        ActivityModel GetActivityById(int id);
+        IEnumerable<ActivityModel> GetActivityByCustomerId(int id);
+        ActivityModel GetCustomerLastActivity(int id);
     }
 }

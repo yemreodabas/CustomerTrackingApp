@@ -43,7 +43,7 @@ namespace CustomerTrackingApp.Controllers
 
             return View(ApiResponse.WithError("Not Authority"));
         }
-
+        /*
         public IActionResult Customers(int id)
         {
             var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
@@ -57,7 +57,7 @@ namespace CustomerTrackingApp.Controllers
 
             return View(ApiResponse.WithError("Not Authority"));
         }
-
+        */
         public IActionResult Logout()
         {
             this.services.UserService.Logout(this.HttpContext);

@@ -19,8 +19,6 @@ C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\netstandard2.1\SQLite.Interop.dll
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\netstandard2.0\SQLite.Interop.dll
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\netstandard2.1\SQLite.Interop.dll
-C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.csproj.CoreCompileInputs.cache
-C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.RazorAssemblyInfo.cache
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.RazorAssemblyInfo.cs
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.AssemblyInfoInputs.cache
@@ -34,7 +32,6 @@ C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Customers.cshtml.g.cs
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Profile.cshtml.g.cs
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Users.cshtml.g.cs
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
@@ -49,3 +46,5 @@ C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.pdb
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.genruntimeconfig.cache
 C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\CustomerTrackingApp.csprojAssemblyReference.cache
+C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Customers.cshtml.g.cs
+C:\Workspace\github\CustomerTrackingApp\CustomerTrackingApp\CustomerTrackingApp\obj\Debug\netcoreapp3.1\Razor\Views\Customer\CustomerProfile.cshtml.g.cs

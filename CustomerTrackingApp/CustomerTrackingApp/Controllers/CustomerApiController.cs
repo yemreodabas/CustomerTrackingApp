@@ -120,5 +120,136 @@ namespace CustomerTrackingApp.Controllers
 				return Json(ApiResponse<CustomerModel>.WithError(exp.ToString()));
 			}
 		}
+
+		[HttpPost]
+		[Route(nameof(CreateActivity))]
+		public ActionResult<ApiResponse<ActivityModel>> CreateActivity([FromBody]CreateActivityModel model)
+		{
+			try
+			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
+				var customerLastActivity = this._customerService.GetCustomerLastActivity(model.CustomerId);
+
+				ActivityModel result = null;
+
+				var newActivity = new Activity();
+				newActivity.Description = model.Description;
+				newActivity.CustomerId = model.CustomerId;
+				newActivity.ActivityType = model.ActivityType;
+				newActivity.UserId = model.UserId;
+				newActivity.Amount = model.Amount;
+				if (model.ActivityType == ActivityType.Purchase)
+				{
+					if(customerLastActivity != null)
+					{
+						newActivity.CurrentDept = model.CurrentDept + customerLastActivity.CurrentDept;
+					}
+					else
+					{
+						newActivity.CurrentDept = model.CurrentDept + 0;
+					}
+				}
+
+				else if (model.ActivityType == ActivityType.Payment)
+				{
+					
+					if (customerLastActivity != null)
+					{
+						newActivity.CurrentDept = customerLastActivity.CurrentDept - model.CurrentDept;
+					}
+					else
+					{
+						newActivity.CurrentDept = model.CurrentDept + 0;
+					}
+				}
+
+				else if (model.ActivityType == ActivityType.ProductReturns)
+				{
+					if (customerLastActivity != null)
+					{
+						newActivity.CurrentDept = model.CurrentDept - customerLastActivity.CurrentDept;
+					}
+					else
+					{
+						newActivity.CurrentDept = model.CurrentDept + 0;
+					}
+				}
+
+
+				this._customerService.AddNewActivity(newActivity);
+
+				result = this._customerService.GetActivityById(newActivity.Id);
+				return Json(ApiResponse<ActivityModel>.WithSuccess(result));
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse<ActivityModel>.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetCustomerById))]
+		public ActionResult<ApiResponse> GetCustomerById(int customerId)
+		{
+			try
+			{
+				var customer = this._customerService.GetById(customerId);
+
+				var response = ApiResponse<CustomerModel>.WithSuccess(customer);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetCustomerCurrentDept))]
+		public ActionResult<ApiResponse> GetCustomerCurrentDept(int customerId)
+		{
+			try
+			{
+				var customerLastActivity = this._customerService.GetCustomerLastActivity(customerId);
+				/*
+				if(customerDept == null)
+				{
+					customerDept.CurrentDept = 0;
+				}*/
+
+				var response = ApiResponse<ActivityModel>.WithSuccess(customerLastActivity);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetActivityByCustomerId))]
+		public ActionResult<ApiResponse<List<ActivityModel>>> GetActivityByCustomerId(int customerId)
+		{
+			try
+			{
+				var activity = this._customerService.GetActivityByCustomerId(customerId);
+
+				var response = ApiResponse<List<ActivityModel>>.WithSuccess(activity);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
 	}
 }

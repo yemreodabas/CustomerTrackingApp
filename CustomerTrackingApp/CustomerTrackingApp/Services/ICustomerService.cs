@@ -12,8 +12,12 @@ namespace CustomerTrackingApp.Services
     {
         void AddNewCustomer(Customer customer);
         List<CustomerModel> GetAllCustomers();
+        CustomerModel GetById(int id);
         List<CustomerModel> GetCustomersByPageNumber(int pageNumber);
         int PhoneCounter(string PhoneCounter);
-        CustomerModel GetById(int id);
+        void AddNewActivity(Activity activity);
+        ActivityModel GetActivityById(int id);
+        List<ActivityModel> GetActivityByCustomerId(int id);
+        ActivityModel GetCustomerLastActivity(int id);
     }
 }
