@@ -62,5 +62,26 @@ namespace CustomerTrackingApp.Services
 
             return customers;
         }
+
+        public void AddNewActivity(Activity activity)
+        {
+            this._customerRepository.ActivityInsert(activity);
+            this._logRepository.Log(Enums.LogType.Info, $"Inserted New User : {activity.Description}");
+        }
+
+        public ActivityModel GetActivityById(int id)
+        {
+            return this._customerRepository.GetActivityById(id);
+        }
+
+        public ActivityModel GetCustomerLastActivity(int id)
+        {
+            return this._customerRepository.GetCustomerLastActivity(id);
+        }
+
+        public List<ActivityModel> GetActivityByCustomerId(int id)
+        {
+            return this._customerRepository.GetActivityByCustomerId(id).ToList();
+        }
     }
 }

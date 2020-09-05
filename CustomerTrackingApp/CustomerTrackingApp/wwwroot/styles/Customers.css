@@ -1,15 +1,30 @@
-﻿.customer-list {
-    float: right;
-    position: relative;
-    width: 80%;
-}
-.user-list :hover {
-    background:#ebe7e7;
-}
-.customer-list-item {
+﻿.customer-list-item {
     display: block;
     float: left;
     width: 250px;
     margin-right: 12px;
     overflow: hidden;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+.customer-list-div {
+    padding: 15px 20px 15px 20px;
+    border-bottom: 1px solid #858484;
+    font-size: 18px;
+}
+.customer-info {
+    margin-left: 2%;
+    margin-bottom: 1%;
+}
+.purchase-div
+{
+    color:darkblue;
+}
+.payment-div
+{
+    color:green;
+}
+.product-return-div {
+    color:darkorange;
 }

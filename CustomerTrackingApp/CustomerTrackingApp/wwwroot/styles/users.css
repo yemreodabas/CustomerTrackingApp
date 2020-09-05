@@ -40,24 +40,16 @@
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
 }
-.create-user-btn
-{
-    position:absolute;
-    float:right;
-    margin-right:30px;
-
-    top:-50px;
-    right:-30px;
-}
 .user-profile-link{
     color: #3f1980;
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
 }
-.create-user-title
-{
-    margin-bottom:10px;
+.create-user-title {
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight:bold;
 }
 .create-user-div
 {

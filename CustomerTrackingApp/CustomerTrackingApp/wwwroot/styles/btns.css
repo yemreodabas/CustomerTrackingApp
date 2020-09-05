@@ -18,6 +18,23 @@
 
     margin-right:5px;
 }
+.customer-profile-btn-div {
+    position: absolute;
+    padding-right: 30px;
+    top: -50px;
+    right: -30px;
+}
+.customer-profile-btn {
+    display:block;
+    float:right;
+    margin-right:15px;
+}
+.create-user-btn {
+    position: absolute;
+    margin-right: 30px;
+    top: -50px;
+    right: -30px;
+}
 .current-page {
     color: white;
     background: #3f1980;

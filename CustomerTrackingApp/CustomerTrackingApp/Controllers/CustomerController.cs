@@ -20,9 +20,38 @@ namespace CustomerTrackingApp.Controllers
             _customerService = customerService;
             _userService = userService;
         }
-
+        /*
         [HttpGet]
         public IActionResult Customers(int id)
+        {
+            var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+            if (onlineUser != null)
+            {
+                var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.Customers));
+                model.UserId = id;
+
+                return View(model);
+            }
+
+            return View(ApiResponse.WithError("Not Authority"));
+        }
+        */
+        public IActionResult Customers(int id)
+        {
+            var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+            if (onlineUser != null)
+            {
+                var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.Customers));
+                model.UserId = id;
+
+                return View(model);
+            }
+
+            return View(ApiResponse.WithError("Not Authority"));
+        }
+
+        [HttpGet]
+        public IActionResult CustomerProfile(int id)
         {
             var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
             if (onlineUser != null)

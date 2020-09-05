@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
             "System.Data.SQLite.Core": {
               "target": "Package",
               "version": "[1.0.112.2, )"
