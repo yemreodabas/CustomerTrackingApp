@@ -1,6 +1,5 @@
 ﻿using CustomerTrackingApp.Entities;
 using CustomerTrackingApp.Models;
-using CustomerTrackingApp.Helper;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace CustomerTrackingApp.Persistence.EF
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				dbConnection.Users.Add(user);
+				dbConnection.User.Add(user);
 				dbConnection.SaveChanges();
 			}
 		}
@@ -27,7 +26,7 @@ namespace CustomerTrackingApp.Persistence.EF
 
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-			 	var users = dbConnection.Users.Skip(skipCount).Take(5).ToList();
+			 	var users = dbConnection.User.Skip(skipCount).Take(5).ToList();
 				return users.Select(u => new UserModel(u)).ToList();
 			}
 		}
@@ -36,7 +35,7 @@ namespace CustomerTrackingApp.Persistence.EF
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				var users = dbConnection.Users.ToList();
+				var users = dbConnection.User.ToList();
 				return users.Select(u => new UserModel(u)).ToList();
 			}
 		}
@@ -45,7 +44,7 @@ namespace CustomerTrackingApp.Persistence.EF
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Users.Where(u => u.Username == username).Count();
+				return dbConnection.User.Where(u => u.Username == username).Count();
 			}
 		}
 
@@ -53,7 +52,7 @@ namespace CustomerTrackingApp.Persistence.EF
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Users.Where(e => e.Email == email).Count();
+				return dbConnection.User.Where(e => e.Email == email).Count();
 			}
 		}
 
@@ -61,16 +60,17 @@ namespace CustomerTrackingApp.Persistence.EF
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				var user = dbConnection.Users.Where(u => u.Id == id);
-				return user.Select(u => new UserModel(u)).ToModel(user);
+				var user = dbConnection.User.Where(u => u.Id == id).FirstOrDefault();
+				return user == null ? null : new UserModel(user);
 			}
 		}
 
-		public IEnumerable<UserModel> GetManagerById()
+		public IEnumerable<UserModel> GetManagers()
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<UserModel>("SELECT * FROM User WHERE ManagerId == 0");
+				var users = dbConnection.User.Where(u => u.ManagerId == 0).ToList();
+				return users.Select(u => new UserModel(u)).ToList();
 			}
 		}
 
@@ -78,9 +78,7 @@ namespace CustomerTrackingApp.Persistence.EF
 		{
 			using (SQLiteDBContext dbConnection = this.OpenConnection())
 			{
-				int userId = dbConnection.Query<int>("SELECT Id FROM User WHERE Username = @Username AND Password = @Password",
-									new { Username = username, Password = password }).FirstOrDefault();
-
+				var userId = dbConnection.User.Where(u => u.Username == username && u.Password == password).Select(u => u.Id).FirstOrDefault();
 				return userId;
 			}
 		}

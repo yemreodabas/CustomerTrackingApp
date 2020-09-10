@@ -99,7 +99,6 @@ namespace CustomerTrackingApp.Persistence.Dapper
 				}
 
 				return dbConnection.QuerySingle<ActivityModel>("SELECT * FROM Activity WHERE CustomerId = @Id AND Id = (SELECT MAX(ID) FROM Activity)", new { Id = id });
-				//return dbConnection.QuerySingle<ActivityModel>("SELECT * FROM Activity WHERE CustomerId = @Id AND ORDER BY ROWID ASC LIMIT 1", new { Id = id });
 
 			}
 		}

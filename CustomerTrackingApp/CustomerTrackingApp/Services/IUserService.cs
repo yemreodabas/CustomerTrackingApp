@@ -16,7 +16,7 @@ namespace CustomerTrackingApp.Services
         UserModel GetById(int id);
         int EmailCounter(string email);
         int UsernameCounter(string username);
-        List<UserModel> GetManagerById();
+        List<UserModel> GetManagers();
         UserModel GetOnlineUser(HttpContext httpContext);
         void Logout(HttpContext httpContext);
         bool TryLogin(UserLoginModel loginData, HttpContext httpContext);

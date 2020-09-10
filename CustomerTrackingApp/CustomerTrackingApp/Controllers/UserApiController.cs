@@ -73,7 +73,7 @@ namespace CustomerTrackingApp.Controllers
 		{
 			try
 			{
-				var managers = this._userService.GetManagerById();
+				var managers = this._userService.GetManagers();
 
 				var response = ApiResponse<List<UserModel>>.WithSuccess(managers);
 

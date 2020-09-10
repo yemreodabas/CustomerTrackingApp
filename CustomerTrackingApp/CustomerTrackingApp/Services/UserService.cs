@@ -41,9 +41,9 @@ namespace CustomerTrackingApp.Services
         {
             return this._userRepository.GetById(id);
         }
-        public List<UserModel> GetManagerById()
+        public List<UserModel> GetManagers()
         {
-            return this._userRepository.GetManagerById().ToList();
+            return this._userRepository.GetManagers().ToList();
         }
         public int UsernameCounter(string username)
         {
