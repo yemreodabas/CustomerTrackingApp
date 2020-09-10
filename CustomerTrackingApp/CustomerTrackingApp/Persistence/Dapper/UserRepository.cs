@@ -62,7 +62,7 @@ namespace CustomerTrackingApp.Persistence.Dapper
 			}
 		}
 
-		public IEnumerable<UserModel> GetManagerById()
+		public IEnumerable<UserModel> GetManagers()
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{

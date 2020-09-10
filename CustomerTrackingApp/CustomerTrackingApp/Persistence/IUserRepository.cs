@@ -15,7 +15,7 @@ namespace CustomerTrackingApp.Persistence
         IEnumerable<UserModel> GetAll();
         int EmailCounter(string email);
         int UserCounter(string username);
-        IEnumerable<UserModel> GetManagerById();
+        IEnumerable<UserModel> GetManagers();
         int GetUserIdByLogin(string username, string password);
     }
 }

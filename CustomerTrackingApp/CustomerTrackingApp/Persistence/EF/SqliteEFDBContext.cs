@@ -9,10 +9,17 @@ namespace CustomerTrackingApp.Persistence.EF
 {
     public class SQLiteDBContext : DbContext
     {
-        public DbSet<Activity> Activities { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Activity> Activity { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Log> Log { get; set; }
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=sqlitedemo.db");
+        */
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite("Data Source=C:\\Workspace\\github\\CustomerTrackingApp\\CustomerTrackingApp.sqlite");
+
+        
     }
 }
